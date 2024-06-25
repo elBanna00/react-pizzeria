@@ -12,6 +12,7 @@ export interface Pizza {
 
 export interface Order {
   id?: string;
+  status?: string;
   customer?: string;
   phone?: string;
   address?: string;
@@ -31,9 +32,7 @@ interface CartPizza {
   totalPrice: number;
 }
 
-export interface Cart {
-  pizzas: CartPizza[];
-}
+export type Cart = CartPizza[];
 
 export async function getMenu() {
   const res = await fetch(`${API_URL}/menu`);
