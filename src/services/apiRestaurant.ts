@@ -10,7 +10,7 @@ export interface Pizza {
   imageUrl?: string;
 }
 
-export interface Order {
+export interface OrderType {
   id?: string;
   status?: string;
   customer?: string;
@@ -24,7 +24,7 @@ export interface Order {
   priorityPrice?: number;
 }
 
-interface CartPizza {
+export interface CartPizza {
   pizzaId: number;
   name: string;
   quantity: number;
@@ -51,7 +51,7 @@ export async function getOrder(id: number) {
   return data;
 }
 
-export async function createOrder(newOrder: Order) {
+export async function createOrder(newOrder: OrderType) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -69,7 +69,7 @@ export async function createOrder(newOrder: Order) {
   }
 }
 
-export async function updateOrder(id: number, updateObj: Order) {
+export async function updateOrder(id: number, updateObj: OrderType) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
