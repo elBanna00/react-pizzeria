@@ -1,6 +1,7 @@
+import { CartPizza } from "../../services/apiRestaurant";
 import { formatCurrency } from "../../utils/helpers";
 
-function OrderItem({ item }: any) {
+function OrderItem({ item }: { item: CartPizza }) {
   const { quantity, name, totalPrice } = item;
 
   return (
