@@ -14,6 +14,7 @@ import {
   formatDate,
 } from "../../utils/helpers";
 import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
 
 function Order() {
   const order = useLoaderData() as OrderType;
@@ -37,7 +38,6 @@ function Order() {
   } = order;
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery!);
-
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -92,13 +92,15 @@ function Order() {
         <p className="font-bold">
           To pay on delivery: {formatCurrency(orderPrice! + priorityPrice!)}
         </p>
+
+        {!priority && <UpdateOrder />}
       </div>
     </div>
   );
 }
 
 export async function loader({ params }: { params: Params }) {
-  const order = await getOrder(Number(params.orderId));
+  const order = await getOrder(params.orderId!);
   return order;
 }
 
