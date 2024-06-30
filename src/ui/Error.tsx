@@ -2,7 +2,12 @@ import { useRouteError } from "react-router-dom";
 import LinkButton from "./LinkButton";
 
 function Error() {
-  const error = useRouteError();
+  interface RouteError {
+    data?: any;
+    message?: string;
+  }
+
+  const error = useRouteError() as RouteError;
 
   return (
     <div>
