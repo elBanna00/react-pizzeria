@@ -3,7 +3,7 @@ import LinkButton from "./LinkButton";
 
 function Error() {
   interface RouteError {
-    data?: any;
+    data?: string;
     message?: string;
   }
 
