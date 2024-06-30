@@ -146,11 +146,10 @@ function CreateOrder() {
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-
   const order: OrderType = {
     ...data,
     cart: JSON.parse(data.cart as string),
-    priority: data.priority === "true",
+    priority: data.priority === "1",
   };
 
   const errors: FormErrors = {};
@@ -159,10 +158,8 @@ export async function action({ request }: { request: Request }) {
       "Please give us your correct phone number. We might need it to contact you.";
 
   if (Object.keys(errors).length > 0) return errors;
-
   // If everything is okay, create new order and redirect
   const newOrder = await createOrder(order);
-
   // Do NOT overuse
   store.dispatch(clearCart());
 
